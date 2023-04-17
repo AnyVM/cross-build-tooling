@@ -8,4 +8,5 @@ RUN cd /opt/vendor/ && tar -xzf openssl-1.1.1s.tar.gz && cd openssl-1.1.1s && ./
 # strip the m64 flag from makefile as we targets 32bit build
 RUN cd /opt/vendor/openssl-1.1.1s && sed -i "s/-m64//g" Makefile && make && make install
 
+ENV OPENSSL_DIR=/usr/local/ssl
 ENV CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS="-L /usr/lib/mipsel-linux-unknown -C link-args=-Wl,-rpath-link,/usr/lib/mipsel-linux-unknown $CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS"
