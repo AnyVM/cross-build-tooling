@@ -11,7 +11,7 @@ The main goal of this project is to help set up the toolchain needed for the MIP
 To use this tool, you just need to configure Cross to use the Docker image provided. The latest version is v0.0.1.
 
 ```bash
-docker pull ghcr.io/moveuplabs/cross-build-tooling:v0.0.1
+docker pull ghcr.io/moveuplabs/cross-build-tooling:v0.0.4
 ```
 
 ## Contributing
