@@ -10,4 +10,4 @@ RUN cd /opt/vendor/openssl-1.1.1s && sed -i "s/-m64//g" Makefile && make && make
 
 ENV OPENSSL_STATIC=yes
 ENV OPENSSL_DIR=/usr/local/ssl
-ENV CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS="$CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS -C link-arg=-latomic -C target-feature=+crt-static"
+ENV CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS="$CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS -C link-arg=-latomic -C target-feature=+crt-static -C link-args=-s"
