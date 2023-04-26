@@ -8,6 +8,10 @@ RUN cd /opt/vendor/ && tar -xzf openssl-1.1.1s.tar.gz && cd openssl-1.1.1s && ./
 # strip the m64 flag from makefile as we targets 32bit build
 RUN cd /opt/vendor/openssl-1.1.1s && sed -i "s/-m64//g" Makefile && make && make install
 
+#RUN rm -rf /usr/lib/libc.so*
+#RUN rm -rf /usr/local/mipsel-linux-muslsf/usr/lib/libc.so*
+#RUN rm -rf /usr/local/mipsel-linux-muslsf/lib/libc.so*
+#RUN cp /usr/local/mipsel-linux-muslsf/lib/libc.a /usr/local/mipsel-linux-muslsf/usr/lib/libc.a
 ENV OPENSSL_STATIC=yes
 ENV OPENSSL_DIR=/usr/local/ssl
-ENV CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS="$CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS -C link-arg=-latomic -C target-feature=+crt-static -C link-args=-s"
+ENV CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS="$CARGO_TARGET_MIPSEL_UNKNOWN_LINUX_MUSL_RUSTFLAGS -C link-arg=-latomic -C link-arg=-lc -C target-feature=+crt-static -C link-arg=-s -C link-self-contained=yes -L /usr/local/mipsel-linux-muslsf/lib -l static=atomic -l static=c "
